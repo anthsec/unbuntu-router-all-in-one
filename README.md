@@ -41,7 +41,7 @@ Now, you successfully reburned your SD-Card, then you can plug it in your R2S an
 
 ## 2 Config network
 
-### 2.1 Be as a DHCP client below your home gateway
+### 2.1 Be as a DHCP client under your home gateway
 
 Connect your Light-modem LAN and your R2S WAN with a net cable, your light-modem will distribute a local ip for R2S.
 
