@@ -4,9 +4,9 @@
 
 This is a project which means to create a new all-in-one system based on Friendly-R2S.
 
-If you do not want to use OpenWrt anymore, try to config your router by yourself. This project may let you know more about how networks works and get much more knowledge  of Linux.
+If you do not want to use OpenWrt anymore, try to config your router by yourself. This project may let you know more about how network works and get much more knowledge  of Linux.
 
-In this project, we may config many files. For more convenience, we should better to  use ssh tools such as FinalShell with file editor instead of Vim tool.
+In this project, we may config many files. For more convenience, we should better to  use ssh tools such as FinalShell with file editor instead of vim tool.
 
 ## 1 Reburn your R2S's Operation System
 
@@ -23,7 +23,7 @@ rk3328-sd-friendlycore-focal-4.19-arm64-20220125.img.zip
 
 Windows could be much easier, so we do not introduce how to reburn sd-card on windows.
 
-**Warning: This Step could be danger if you choose a wrong disk which being saving your Mac OS (such as Macintosh HD), please ensure you know which disk is the right one (your SD-Card).**
+**Warning: This Step could be danger if you choose a wrong disk which is saving your Mac OS (such as Macintosh HD), please ensure you know which disk is the right one (your SD-Card).**
 
 ```bash
 #Step1 Plug in your SD-Card and format it to ex-fat
@@ -37,7 +37,7 @@ sudo dd bs=1m if=/Users/anthony/Desktop/rk3328-sd-friendlycore-lite-focal-5.15-a
 #Step4 could take a long time, do nothing before MAC remind you
 ```
 
-Now, you successfully returned your SD-Card, then you can plug it in your R2S and boot it.
+Now, you successfully reburned your SD-Card, then you can plug it in your R2S and boot it.
 
 ## 2 Config network
 
