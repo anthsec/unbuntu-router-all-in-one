@@ -1,0 +1,29 @@
+#/root/.config/clash/config.yaml
+
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+mode: rule
+log-level: info
+external-ui: dashboard # in "/root/.config/clash/dashboard", such as YACD
+external-controller: '0.0.0.0:9090' # url:"http://0.0.0.0:9090/ui"
+secret: '' #password to login dashboard, it's not necessary
+cfw-latency-url: 'http://cp.cloudflare.com/generate_204'
+
+#redir-host mode, you have to enable your DNS config.
+#how clash to work refer to https://blog.skk.moe/post/what-happend-to-dns-in-proxy/
+dns:
+  enable: true # enable	customize dns
+  ipv6: false # default is false
+  listen: 0.0.0.0:1053 #remember it, we use 1053 port soon
+  enhanced-mode: redir-host  #another mode is fake-ip
+  #fake-ip-range: 198.18.0.1/16 # if you don't know what it is, don't change it
+  nameserver:
+    - 127.0.0.1:53 # Your Dnsmasq
+  fallback:
+    - 208.67.220.220:5353 #fallback1
+    - 208.67.222.222:5353 #fallback2
+    - 101.6.6.6:5353 #fallback3
+proxies:
+#Your subscription

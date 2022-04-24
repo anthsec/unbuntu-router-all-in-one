@@ -217,19 +217,67 @@ systemctl [***] clash
 
 ### 3.2 Config YAML
 
-```
-to be update...
+```yaml
+port: 7890
+socks-port: 7891
+redir-port: 7892
+allow-lan: true
+mode: rule
+log-level: info
+external-ui: dashboard # in "/root/.config/clash/dashboard", such as YACD
+external-controller: '0.0.0.0:9090' # url:"http://0.0.0.0:9090/ui"
+secret: '' #password to login dashboard, it's not necessary
+cfw-latency-url: 'http://cp.cloudflare.com/generate_204'
+
+#redir-host mode, you have to enable your DNS config.
+#how clash to work refer to https://blog.skk.moe/post/what-happend-to-dns-in-proxy/
+dns:
+  enable: true # enable	customize dns
+  ipv6: false # default is false
+  listen: 0.0.0.0:1053 #remember it, we use 1053 port soon
+  enhanced-mode: redir-host  #another mode is fake-ip
+  #fake-ip-range: 198.18.0.1/16 # if you don't know what it is, don't change it
+  nameserver:
+    - 127.0.0.1:53 # Your Dnsmasq
+  fallback:
+    - 208.67.220.220:5353 #fallback1
+    - 208.67.222.222:5353 #fallback2
+    - 101.6.6.6:5353 #fallback3
+proxies:
+#Your subscription
 ```
 
 ### 3.3 Config Iptables
 
-```
+```bash
+#clean or iptables nat rules
+iptables -t nat -F
+
+#config iptables
+iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE
+iptables -t nat -N Clash
+iptables -t nat -A Clash -d 0.0.0.0/8 -j RETURN
+iptables -t nat -A Clash -d 10.0.0.0/8 -j RETURN
+iptables -t nat -A Clash -d 127.0.0.0/8 -j RETURN
+iptables -t nat -A Clash -d 169.254.0.0/16 -j RETURN
+iptables -t nat -A Clash -d 172.16.0.0/12 -j RETURN
+iptables -t nat -A Clash -d 192.168.0.0/16 -j RETURN
+iptables -t nat -A Clash -d 224.0.0.0/4 -j RETURN
+iptables -t nat -A Clash -d 240.0.0.0/4 -j RETURN
+
+iptables -t nat -A Clash -p tcp -j REDIRECT --to-ports 7892
+iptables -t nat -A PREROUTING -p tcp -j Clash
+iptables -t nat -A PREROUTING -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.2.1:1053
 
 ```
 
 
 
 ## 4 Docker install Apps
+
+```
+Try it by yourself.
+```
 
 
 
