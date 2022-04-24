@@ -182,23 +182,52 @@ In this chapter, we don't introduce how to use the basic function of Clash for L
 
 ### 3.1 Install Clash for Linux
 
+```bash
+#wget Clash Release from https://github.com/Dreamacro/clash/releases
+wget https://github.com/Dreamacro/clash/releases/download/v1.10.0/clash-linux-armv8-v1.10.0.gz
+#unzip
+gzip -d clash-linux-xxxxx.gz
+#move to usr/bin and rename its name to "clash"
+sudo mv clash-linux-amd64-v0.19.0 /usr/bin/clash
+#it's not necessary to give run permission but you can do it
+sudo chmod +x /usr/bin/clash
+#check if success
+clash -v 
+#config start with boot
+#modify or create /etc/systemd/system/clash.service
+[Unit]
+Description=clash for linux
+
+[Service]
+Type=simple
+User=root
+ExecStart=/usr/bin/clash -d /root/.config/clash/
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target
+
+#reload systemd daemon
+systemctl daemon-reload
+#use stop/start/restart/enable/disable to replace [***] below
+systemctl [***] clash
+
+
+```
+
+### 3.2 Config YAML
+
 ```
 to be update...
 ```
 
-### 3.2 Config UI
+### 3.3 Config Iptables
 
 ```
-to be update...
-```
-
-### 3.3 Config YAML
 
 ```
-to be update...
-```
 
-#### 3.4 Somemore
+
 
 ## 4 Docker install Apps
 
