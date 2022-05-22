@@ -16,6 +16,9 @@ iptables -t nat -A Clash -d 224.0.0.0/4 -j RETURN
 iptables -t nat -A Clash -d 240.0.0.0/4 -j RETURN
 
 iptables -t nat -A Clash -p tcp -j REDIRECT --to-ports 7892
+#add udp proxy
+iptables -t nat -A Clash -p udp -j REDIRECT --to-ports 7892
+
 iptables -t nat -A PREROUTING -p tcp -j Clash
 
 iptables -t nat -A PREROUTING -p udp -m udp --dport 53 -j DNAT --to-destination 192.168.2.1:1053
